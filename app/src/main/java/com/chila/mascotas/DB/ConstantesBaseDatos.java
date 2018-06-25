@@ -9,7 +9,7 @@ public final class ConstantesBaseDatos {
     public static final String TABLE_MASCOTAS_ID        = "id";
     public static final String TABLE_MASCOTAS_NOMBRE    = "nombre";
     public static final String TABLE_MASCOTAS_FOTO      = "foto";
-    public static final String TABLE_MASCOTAS_RAITING   = "raiting";
+
 
 
     public static final String TABLE_RAITING_MASCOTA        = "mascota_likes";

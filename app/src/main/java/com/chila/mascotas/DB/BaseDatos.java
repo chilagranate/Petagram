@@ -47,9 +47,6 @@ public class BaseDatos extends SQLiteOpenHelper{
                                                 "FOREIGN KEY (" + ConstantesBaseDatos.TABLE_RAITING_ID_CONTACTO + ") " +
                                                 "REFERENCES " + ConstantesBaseDatos.TABLE_MASCOTAS + "("+ConstantesBaseDatos.TABLE_MASCOTAS_ID+")"+
                                                 ")";
-
-
-
         db.execSQL(queryCrearTablaMascota);
         db.execSQL(queryCrearTablaLikesMascota);
         db.close();
