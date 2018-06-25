@@ -84,11 +84,11 @@ public class BaseDatos extends SQLiteOpenHelper{
         return mascotas;
     }
     public void borrarDB(){
-        //SQLiteDatabase db = this.getWritableDatabase();
-        //db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_MASCOTAS);
-        //db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_RAITING_MASCOTA);
-        //onCreate(db);
-        //db.close();
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_MASCOTAS);
+        db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_RAITING_MASCOTA);
+        onCreate(db);
+        db.close();
 
 
     }

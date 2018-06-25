@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mBorrarBD:
                 BaseDatos bd = new BaseDatos(this);
                 bd.borrarDB();
+                setUpViewPager();
+
                 break;
 
         }
