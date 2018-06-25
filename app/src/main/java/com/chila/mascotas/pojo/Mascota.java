@@ -6,6 +6,10 @@ public class Mascota {
     private String nombre;
     private int raiting;
 
+    public Mascota() {
+
+    }
+
     public int getId() {
         return id;
     }

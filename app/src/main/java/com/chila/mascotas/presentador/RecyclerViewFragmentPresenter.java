@@ -27,9 +27,6 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         constructorMascotas = new ConstructorMascotas(context);
         mascotas = constructorMascotas.obtenerDatos();
         mostrarMascotasRV();
-
-
-
     }
 
     @Override
