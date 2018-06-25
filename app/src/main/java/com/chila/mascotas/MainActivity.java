@@ -65,12 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.mFav:
-                Intent intent = new Intent(this, FavsActivity.class);
+                Intent intent = new Intent(MainActivity.this, FavsActivity.class);
                 startActivity(intent);
+                break;
 
             case R.id.mBorrarBD:
                 BaseDatos bd = new BaseDatos(this);
                 bd.borrarDB();
+                break;
 
         }
 

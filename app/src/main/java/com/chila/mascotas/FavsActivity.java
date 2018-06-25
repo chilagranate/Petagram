@@ -1,5 +1,6 @@
 package com.chila.mascotas;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,19 +18,23 @@ public class FavsActivity extends AppCompatActivity implements IFavsActivity {
 
     private RecyclerView listaMascotasFavs;
     private IFavsActivityPresenter presenter;
+    private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
         Toolbar actionBar = findViewById(R.id.MiActionBar);
+
         setSupportActionBar(actionBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setLogo(R.drawable.pata);
         getSupportActionBar().setTitle(R.string.Favs_tittle);
 
         listaMascotasFavs = findViewById(R.id.rvMascotasFavs);
-        presenter = new FavsActivityPresenter(this, this);
+        activity = this;
+
+        presenter = new FavsActivityPresenter(this, activity);
 
     }
 

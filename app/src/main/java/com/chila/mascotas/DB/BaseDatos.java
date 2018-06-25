@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class BaseDatos extends SQLiteOpenHelper{
     private Context context;
     private static BaseDatos instance = null;
+    private static final int MAX_FAVS = 5;
 
 
 
@@ -47,8 +48,11 @@ public class BaseDatos extends SQLiteOpenHelper{
                                                 "REFERENCES " + ConstantesBaseDatos.TABLE_MASCOTAS + "("+ConstantesBaseDatos.TABLE_MASCOTAS_ID+")"+
                                                 ")";
 
+
+
         db.execSQL(queryCrearTablaMascota);
         db.execSQL(queryCrearTablaLikesMascota);
+        db.close();
     }
 
     @Override
@@ -80,11 +84,11 @@ public class BaseDatos extends SQLiteOpenHelper{
         return mascotas;
     }
     public void borrarDB(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_MASCOTAS);
-        db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_RAITING_MASCOTA);
-        onCreate(db);
-        db.close();
+        //SQLiteDatabase db = this.getWritableDatabase();
+        //db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_MASCOTAS);
+        //db.execSQL("DROP TABLE IF EXISTS " + ConstantesBaseDatos.TABLE_RAITING_MASCOTA);
+        //onCreate(db);
+        //db.close();
 
 
     }
@@ -121,7 +125,7 @@ public class BaseDatos extends SQLiteOpenHelper{
 
     public Mascota obtenerMascota(int id){
 
-        String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTAS;
+        String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_MASCOTAS + " WHERE " +ConstantesBaseDatos.TABLE_MASCOTAS_ID +"="+id;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor registros = db.rawQuery(query, null);
@@ -144,12 +148,14 @@ public class BaseDatos extends SQLiteOpenHelper{
         ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
 
         String query = "SELECT * FROM " + ConstantesBaseDatos.TABLE_RAITING_MASCOTA;
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor registros = db.rawQuery(query,null);
-
-        while(registros.moveToNext()){
-            mascotas.add(obtenerMascota(registros.getInt(1)));
+        int i = 1;
+        while(registros.moveToNext()&&i<MAX_FAVS){
+            Mascota mascota = obtenerMascota(registros.getInt(1));
+            if(!MascotaRepetida(mascotas, mascota.getId()))
+            mascotas.add(mascota);
+            i++;
 
         }
         db.close();
@@ -158,5 +164,16 @@ public class BaseDatos extends SQLiteOpenHelper{
         return mascotas;
 
 
+    }
+
+    public boolean MascotaRepetida(ArrayList<Mascota>mascotas, int id){
+        boolean repetida = false;
+
+        for(int i = 0; i<mascotas.size() && repetida==false;i++){
+            if (mascotas.get(i).getId() == id)
+                    repetida = true;
+
+        }
+        return repetida;
     }
 }

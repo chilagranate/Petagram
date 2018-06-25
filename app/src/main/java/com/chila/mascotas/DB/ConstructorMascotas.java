@@ -73,10 +73,7 @@ public class ConstructorMascotas {
 
     }
 
-    public ArrayList<Mascota> obtenerMascotasLike(){
-        BaseDatos db = BaseDatos.getInstance(context);
-        return db.obtenerMascotasLike();
-    }
+
 
 
 
