@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.chila.mascotas.DB.BaseDatos;
 import com.chila.mascotas.adapter.PageAdapter;
 import com.chila.mascotas.fragment.PerfilFragment;
 import com.chila.mascotas.fragment.RecyclerViewFragment;
@@ -63,10 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
 
-
             case R.id.mFav:
-                Intent intent = new Intent(this, FavsActivity.class);
+                Intent intent = new Intent(MainActivity.this, FavsActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.mBorrarBD:
+                BaseDatos bd = new BaseDatos(this);
+                bd.borrarDB();
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);

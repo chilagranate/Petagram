@@ -12,6 +12,11 @@
         android:orderInCategory="101">
     </item>
 
+    <item android:id="@+id/mBorrarBD"
+        android:title="@string/borrar_bd"
+        android:orderInCategory="103">
+    </item>
+
 
 
     <item

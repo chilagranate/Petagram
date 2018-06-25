@@ -1,12 +1,22 @@
 package com.chila.mascotas.pojo;
 
 public class Mascota {
+    private int id;
+    private int foto;
+    private String nombre;
+    private int raiting;
 
-    int foto;
-    String nombre;
-    int raiting;
+    public Mascota() {
 
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Mascota(int foto, String nombre, int raiting) {
         this.foto = foto;
